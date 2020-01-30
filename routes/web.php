@@ -32,6 +32,9 @@ Route::get('product/{slug}', [
     'uses'=>'StoreController@show'
 ]);
 
+Route::resource('products','ProductController');
+
+/*
 
 Route::get('cart/show', [
     'as'=> 'cart-show',
@@ -43,7 +46,7 @@ Route::get('cart/add/{product}', [
     'uses'=> 'CartController@add'
 ]);
 
-/*
+
 Route::group(['middleware' => ['web']], function () {
     Route::bind('product', function($slug){
      return App\Product::where('slug', $slug)->first();

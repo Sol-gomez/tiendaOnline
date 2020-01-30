@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('products.inicio',compact('products'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'name' => 'required',
+
+            'description' => 'required',
+
+            'price' => 'required'
+
+        ]);
+        Product::create($request->all());
+        return redirect()->route('products.inicio')->with('success','Producto creado exitosamente.');
     }
 
     /**
@@ -46,7 +57,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.mostrar',compact('product'));
     }
 
     /**
@@ -57,7 +68,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit',compact('product'));
     }
 
     /**
@@ -69,7 +80,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+
+            'name' => 'required',
+
+            'description' => 'required',
+            
+            'price' => 'required'
+        ]);
+        $product->update($request->all());
+        return redirect()->route('products.inicio')->with('success','Product updated successfully');
     }
 
     /**
@@ -80,6 +100,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.inicio')->with('success','Product deleted successfully');
     }
 }
