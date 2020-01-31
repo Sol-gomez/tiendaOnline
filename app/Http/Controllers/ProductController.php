@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Order;
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 class ProductController extends Controller
 {
@@ -34,19 +37,28 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(int $id)
     {
-        $request->validate([
+       
+        $product = Product::find($id);
+        $order = new Order;
+        $order->product_id = $id; 
+        $order->user_id = Auth::user()->id;
+        $order->price = $product->price;
+        $order->status = 0;
+        
+        $order->save();
+        return redirect("/");
+         dd($order->subtotal);
+       
+    }
 
-            'name' => 'required',
+    public function indexCart(){
 
-            'description' => 'required',
-
-            'price' => 'required'
-
-        ]);
-        Product::create($request->all());
-        return redirect()->route('products.inicio')->with('success','Producto creado exitosamente.');
+        $order = DB::table('orders')->where('user_id', '=',Auth::user()->id)->where('status', '=', '0')->get();
+        $products = Product::all();
+      
+        return view('carrito2')->with('orders','products', $order);
     }
 
     /**

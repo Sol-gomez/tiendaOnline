@@ -10,13 +10,13 @@
 
             <div class="pull-left">
 
-                <h2>Edit Product</h2>
+                <h2>Editar Producto</h2>
 
             </div>
 
             <div class="pull-right">
 
-                <a class="btn btn-primary" href="{{ route('products.inicio') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('products.inicio') }}"> Volver</a>
 
             </div>
 
@@ -62,7 +62,7 @@
 
                 <div class="form-group">
 
-                    <strong>Name:</strong>
+                    <strong>Nombre:</strong>
 
                     <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="Name">
 
@@ -74,13 +74,26 @@
 
                 <div class="form-group">
 
-                    <strong>Detail:</strong>
+                    <strong>Detalles:</strong>
 
                     <textarea class="form-control" style="height:150px" name="description" placeholder="description">{{ $product->description }}</textarea>
 
                 </div>
 
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                <div class="form-group">
+
+                    <strong>Precio:</strong>
+
+                    <textarea class="form-control" style="height:150px" name="price" placeholder="precio">{{ $product->price }}</textarea>
+
+                </div>
+
+            </div>
+
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 

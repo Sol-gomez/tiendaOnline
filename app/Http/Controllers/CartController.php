@@ -16,12 +16,22 @@ class CartController extends Controller
 
     // mostrar carrito
     public function show(){
-        return \Session::get('cart');
+        return view('cart.carrito');
     }
-/*
+
     //Agregar item
     public function add($id){
-
+        $product = Product::find($id);
+        $product = [
+            'id'=> $product->id,
+            'name' => $product->name,
+            'description'=>$product->description,
+            'price'=>$product->price
+        ];
+        session()->put("user.cart".$id.$product);
+        return view('cart.carrito');
+    }
+        /*
         //$cart= \Session::get('cart'); //recibo var de seccion cart y la guardo en la variable local cart
         $products=  Product::find($id); 
         //$product->quantity=1; //propiedad de cantidad, la defino en 1
@@ -42,9 +52,14 @@ class CartController extends Controller
 
     //actualizar item
 
-    // vaciar carrito (trash)
+    // vaciar carrito (remove)
+
 
     //obtener total del carrito
 
     */
+    public function remove($id){
+        session()->pull('user.cart.'.$id, "default");
+        return view('cart.carrito');
+    }
 }

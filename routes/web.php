@@ -32,7 +32,21 @@ Route::get('product/{slug}', [
     'uses'=>'StoreController@show'
 ]);
 
-Route::resource('products','ProductController');
+ Route::resource('products','ProductController');
+
+// Aquí es donde controlo lo del carrito de compras, agregar productos
+Route::get('cart/add/{id}', "ProductController@store")->name("prueba")->middleware('auth');
+
+//Rutas para el acceso a administrador
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('/{provider}', 'Auth\LoginController@redirectToProvider');
+    Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+});
+
+    
+    Route::get('/edit/{id}', 'UserUpdate@edit')->middleware('auth')->name('edit');
+    Route::put('/update/{id}', 'UserUpdate@update')->name('update');
+
 
 /*
 
@@ -64,3 +78,5 @@ Route::group(['middleware' => ['web']], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+route::get('carrito2', 'ProductController@indexCart');

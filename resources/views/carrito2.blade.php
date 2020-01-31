@@ -14,7 +14,7 @@
             </div>
             <div class="pull-right">
                 <br>
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Crear Producto Nuevo</a>
+                {{-- <a class="btn btn-success" href="{{ route('products.create') }}"> Crear Producto Nuevo</a> --}}
             </div>
         </div>
     </div>
@@ -32,7 +32,23 @@
             <th>Precio</th>
             <th width="280px">Accion</th>
         </tr>
-        @foreach ($products as $product)
+        @dd($products);
+
+        @foreach($orders as $order)
+        {{-- @foreach ($products as $product)
+        @if($order->product_id == $products->id)
+        <tr>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->description }}</td>
+            <td>{{ $product->price }}</td>
+           
+        </tr>
+        @endif --}}
+        {{-- @endforeach --}}
+        
+        
+        @endforeach;
+        {{-- @foreach ($products as $product)
         <tr>
             <td>{{ $product->name }}</td>
             <td>{{ $product->description }}</td>
@@ -53,7 +69,7 @@
             
         </tr>
 
-        @endforeach
+        @endforeach --}}
     
     </table>
     
