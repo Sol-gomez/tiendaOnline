@@ -1,3 +1,6 @@
+TP INTEGRADOR DIGITAL HOUSE. ECOMMERCE DE TIENDA DE ROPA (solo incluye seeders de remeras, CRUD listo, falta paypal).
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
